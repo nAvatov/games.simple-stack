@@ -4,7 +4,7 @@ using UnityEngine;
 
 sealed class PlayerInputSystem: IEcsRunSystem {
     private readonly EcsWorld _world = null;
-    private readonly EcsFilter<PlayerTagComponent, DirectionComponent> _playerDirectionFilter = null;
+    private readonly EcsFilter<PlayerControllerComponent, DirectionComponent> _playerDirectionFilter = null;
 
     private Vector2 _movementVector;
     public void Run() {
@@ -18,12 +18,17 @@ sealed class PlayerInputSystem: IEcsRunSystem {
             ref var dirComponent = ref _playerDirectionFilter.Get2(particularEntity);
             ref var direction = ref dirComponent.Direction;
             direction.x = _movementVector.x;
-            direction.y = _movementVector.y;
+            direction.z = _movementVector.y;
         }
     }
 
     private void InitializeMovementVector() {
-        _movementVector.x = Input.GetAxis("Horizontal");
-        _movementVector.y = Input.GetAxis("Vertical");
+        foreach(var particularEntity in _playerDirectionFilter) {
+            ref var controllerComponent = ref _playerDirectionFilter.Get1(particularEntity);
+
+            _movementVector.x = controllerComponent.HorizontalInput;
+            _movementVector.y = controllerComponent.VerticalInput;
+        }
+
     }
 }
