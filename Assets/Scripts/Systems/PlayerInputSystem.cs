@@ -29,6 +29,5 @@ sealed class PlayerInputSystem: IEcsRunSystem {
             _movementVector.x = controllerComponent.HorizontalInput;
             _movementVector.y = controllerComponent.VerticalInput;
         }
-
     }
 }
