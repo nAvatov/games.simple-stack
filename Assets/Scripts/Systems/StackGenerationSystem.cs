@@ -5,9 +5,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Threading;
 
-sealed class StackSystem : IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem {
+sealed class StackGenerationSystem : IEcsInitSystem, IEcsDestroySystem {
     private readonly EcsWorld _world = null;
-    private readonly EcsFilter<StackComponent> _stackFilter = null;
     private readonly EcsFilter<StackGeneratorComponent, StackComponent> _stackGeneratorFilter = null;
     private readonly EcsFilter<PlayerTagComponent, StackComponent> _playerStackFilter = null;
     private CancellationTokenSource generationCTS;
@@ -19,19 +18,6 @@ sealed class StackSystem : IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem {
     public void Init() {
         generationCTS = new CancellationTokenSource();
         InitStackGenerating();
-    }
-
-    public void Run() {
-        DisplayStackAmount();
-    }
-
-    private void DisplayStackAmount() {
-        foreach(var entity in _stackFilter) {
-            ref var stackComponent = ref _stackFilter.Get1(entity);
-            if (stackComponent.Stack != null) {
-                stackComponent.StackAmount = stackComponent.Stack.Count.ToString();
-            }
-        }
     }
 
     private void InitStackGenerating() {
@@ -51,4 +37,4 @@ sealed class StackSystem : IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem {
             await Task.Delay(stackGeneratorComponent.StackGenerationTime);
         }
     }
-}
+}   

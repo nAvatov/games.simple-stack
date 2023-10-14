@@ -19,8 +19,8 @@ GameObject:
   - component: {fileID: 2033345461}
   - component: {fileID: 2033345459}
   - component: {fileID: 2033345460}
-  - component: {fileID: -8663134404804825624}
-  m_Layer: 0
+  - component: {fileID: 4135448207502353953}
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,6 +128,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d53c1d0c2a29b94bba928e65bbf20e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  value:
+    _playersTransform: {fileID: 4135448205737739705}
+    _collectingDelay: 2000
 --- !u!114 &4135448205737739693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,7 +211,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-8663134404804825624
+--- !u!114 &4135448207502353953
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -217,6 +220,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4135448205737739706}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ba45a1705e388d45a6e72cf7ed59591, type: 3}
+  m_Script: {fileID: 11500000, guid: 533f7fff9105c6d4bb78ead904648dc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  value:
+    _amountTMP: {fileID: 0}
