@@ -12,7 +12,7 @@ sealed class StackGenerationSystem : IEcsInitSystem, IEcsDestroySystem {
     private CancellationTokenSource generationCTS;
 
     public void Destroy() {
-        generationCTS.Cancel();
+        generationCTS?.Cancel();
     }
 
     public void Init() {

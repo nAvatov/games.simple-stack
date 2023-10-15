@@ -980,12 +980,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &2033345445 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4135448205737739706, guid: 625636a092065944b885573c5ced7aca,
-    type: 3}
-  m_PrefabInstance: {fileID: 4135448207502353951}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2033345446 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4135448205737739705, guid: 625636a092065944b885573c5ced7aca,
@@ -1006,19 +1000,9 @@ PrefabInstance:
       objectReference: {fileID: 1141483286}
     - target: {fileID: 4135448205737739694, guid: 625636a092065944b885573c5ced7aca,
         type: 3}
-      propertyPath: value._collectingDelay
-      value: 2000
+      propertyPath: value._collectingAmount
+      value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 4135448205737739694, guid: 625636a092065944b885573c5ced7aca,
-        type: 3}
-      propertyPath: value._collectingSpeed
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135448205737739694, guid: 625636a092065944b885573c5ced7aca,
-        type: 3}
-      propertyPath: value._playersTransform
-      value: 
-      objectReference: {fileID: 2033345446}
     - target: {fileID: 4135448205737739705, guid: 625636a092065944b885573c5ced7aca,
         type: 3}
       propertyPath: m_RootOrder
@@ -1079,22 +1063,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4135448207502353953, guid: 625636a092065944b885573c5ced7aca,
+        type: 3}
+      propertyPath: value._amountTMP
+      value: 
+      objectReference: {fileID: 1167403816}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 625636a092065944b885573c5ced7aca, type: 3}
---- !u!114 &4135448207502353953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2033345445}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 533f7fff9105c6d4bb78ead904648dc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value:
-    _amountTMP: {fileID: 1167403816}
 --- !u!1001 &8429668675202263477
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1104,7 +1079,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1915525397, guid: 2870ea0016b3f5b489a7ba85f522b677, type: 3}
       propertyPath: value._collectDistance
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1915525397, guid: 2870ea0016b3f5b489a7ba85f522b677, type: 3}
       propertyPath: value._stackGenerationTime

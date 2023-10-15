@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-sealed class PlayerStackHandleSystem : IEcsInitSystem {
+sealed class StackFillingSystem : IEcsInitSystem {
     private readonly EcsWorld _world = null;
     private readonly EcsFilter<PlayerTagComponent, StackComponent> _playerStackFilter = null;
     private readonly EcsFilter<StackGeneratorComponent, StackComponent> _stackGenerationFilter = null;
@@ -22,7 +22,6 @@ sealed class PlayerStackHandleSystem : IEcsInitSystem {
             foreach(var playerEntity in _playerStackFilter) {
                 ref var playerTagComponent = ref _playerStackFilter.Get1(playerEntity);
                 ref var playerStackComponent = ref _playerStackFilter.Get2(playerEntity);
-                Debug.Log("Launched another distance listener");
                 ProceedStackFill(playerTagComponent, playerStackComponent, stackGeneratorComponent, generatorsStackComponent, _playerStackFillCTS.Token);
             }
         }
@@ -31,17 +30,21 @@ sealed class PlayerStackHandleSystem : IEcsInitSystem {
     private async void ProceedStackFill(PlayerTagComponent playerTagComponent, StackComponent playerStackComponent, StackGeneratorComponent stackGeneratorComponent, StackComponent generatorsStackComponent, CancellationToken token) {
         while (!token.IsCancellationRequested) {
             if (Vector3.Distance(playerTagComponent.Position, stackGeneratorComponent.CollectPoint) <= stackGeneratorComponent.CollectDistance) {
-                Debug.Log("I get close enough!");
-                if (generatorsStackComponent.Stack.TryPop(out GameObject result)) {
-                    Debug.Log("Collected 1 item in stack!");
-                    if (playerStackComponent.Stack == null) {
-                        playerStackComponent.Stack = new Stack<GameObject>();
-                    }
-                    playerStackComponent.Stack.Push(result);
-                    Debug.Log(playerStackComponent.Stack.Count);
-                }
+                FillPlayersStack(playerTagComponent, generatorsStackComponent, playerStackComponent);
             }
             await Task.Delay(playerTagComponent.CollectingDelay);
+        }
+    }
+
+    private void FillPlayersStack(PlayerTagComponent playerTagComponent, StackComponent generatorsStackComponent, StackComponent playerStackComponent) {
+        if (playerStackComponent.Stack == null) {
+            playerStackComponent.Stack = new Stack<GameObject>();
+        }
+
+        for(int i = 0; i < playerTagComponent.CollectingAmount; i++) {
+            if (generatorsStackComponent.Stack.TryPop(out GameObject result)) {
+                playerStackComponent.Stack.Push(result);
+            }
         }
     }
 
