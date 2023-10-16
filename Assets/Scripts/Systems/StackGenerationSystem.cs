@@ -7,29 +7,31 @@ using System.Threading;
 
 sealed class StackGenerationSystem : IEcsInitSystem, IEcsDestroySystem {
     private readonly EcsWorld _world = null;
-    private readonly EcsFilter<StackGeneratorComponent, StackComponent> _stackGeneratorFilter = null;
+    private readonly EcsFilter<StackInteractorComponent, StackComponent> _stackInteractorsFilter = null;
     private readonly EcsFilter<PlayerTagComponent, StackComponent> _playerStackFilter = null;
-    private CancellationTokenSource generationCTS;
+    private CancellationTokenSource _generationCTS;
 
     public void Destroy() {
-        generationCTS?.Cancel();
+        _generationCTS?.Cancel();
     }
 
     public void Init() {
-        generationCTS = new CancellationTokenSource();
+        _generationCTS = new CancellationTokenSource();
         InitStackGenerating();
     }
 
     private void InitStackGenerating() {
-        foreach(var entity in _stackGeneratorFilter) {
-            ref var stackComponent = ref _stackGeneratorFilter.Get2(entity);
-            ref var stackGeneratorComponent = ref _stackGeneratorFilter.Get1(entity);
-            stackComponent.Stack = new Stack<GameObject>();
-            StartGenerating(stackComponent, stackGeneratorComponent, generationCTS.Token);
+        foreach(var entity in _stackInteractorsFilter) {
+            ref var stackComponent = ref _stackInteractorsFilter.Get2(entity);
+            ref var stackInteractorComponent = ref _stackInteractorsFilter.Get1(entity);
+            if (stackInteractorComponent.IsGenerator) {
+                stackComponent.Stack = new Stack<GameObject>();
+                StartGenerating(stackComponent, stackInteractorComponent, _generationCTS.Token);
+            }
         }
     }
 
-    private async void StartGenerating(StackComponent stackComponent, StackGeneratorComponent stackGeneratorComponent, CancellationToken token) {
+    private async void StartGenerating(StackComponent stackComponent, StackInteractorComponent stackGeneratorComponent, CancellationToken token) {
         while(!token.IsCancellationRequested) {
             GameObject newItem = new GameObject();
             newItem.transform.parent = stackGeneratorComponent.GenerationSpot;

@@ -30,6 +30,6 @@ public class EcsStartup : MonoBehaviour {
             .Add(new MovementSystem())
             .Add(new StackDisplayingSystem())
             .Add(new StackGenerationSystem())
-            .Add(new StackFillingSystem());
+            .Add(new StackInteractionSystem());
     }
 }

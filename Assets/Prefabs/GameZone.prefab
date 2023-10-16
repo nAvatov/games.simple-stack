@@ -425,7 +425,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -1.034
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7839034079269643668, guid: 34002f06248c94a46b5b16e9eeef61d4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 34002f06248c94a46b5b16e9eeef61d4, type: 3}
 --- !u!114 &8189533583992847266 stripped
 MonoBehaviour:
@@ -465,23 +466,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value:
     _amountTMP: {fileID: 8189533583992847266}
---- !u!114 &1915525397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8429668673824207034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d85d1ee94e901324696d69db209510a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value:
-    _stackGenerationTime: 2000
-    _collectDistance: 0.2
-    _generationSpot: {fileID: 194956888}
-    _collectPoint: {fileID: 8429668674615672159}
 --- !u!114 &1915525398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -495,6 +479,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   convertMode: 0
+--- !u!114 &7253319879241479278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8429668673824207034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 339a70b1cf953a84189223873c3d8f4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value:
+    _isGenerator: 1
+    _acceptableInteractionDistance: 1
+    _interactionPoint: {fileID: 8429668674615672159}
+    _generationAmount: 1
+    _stackGenerationTime: 2000
+    _generationSpot: {fileID: 194956888}
+    _requestedDrainAmount: 0
+    _drainDuration: 0
 --- !u!4 &8429668674615672159 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5363806897662949836, guid: 34002f06248c94a46b5b16e9eeef61d4,
