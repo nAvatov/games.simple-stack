@@ -492,14 +492,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    _isGenerator: 1
     _acceptableInteractionDistance: 1
     _interactionPoint: {fileID: 8429668674615672159}
-    _generationAmount: 1
+--- !u!114 &2882896681639803987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8429668673824207034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f15c5b3c6b068f349b06a5da1a19548f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value:
+    _generationAmount: 3
     _stackGenerationTime: 2000
     _generationSpot: {fileID: 194956888}
-    _requestedDrainAmount: 0
-    _drainDuration: 0
 --- !u!4 &8429668674615672159 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5363806897662949836, guid: 34002f06248c94a46b5b16e9eeef61d4,

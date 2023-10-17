@@ -7,12 +7,12 @@ using System.Threading;
 
 sealed class StackGenerationSystem : IEcsInitSystem, IEcsDestroySystem {
     private readonly EcsWorld _world = null;
-    private readonly EcsFilter<StackInteractorComponent, StackComponent> _stackInteractorsFilter = null;
-    private readonly EcsFilter<PlayerTagComponent, StackComponent> _playerStackFilter = null;
+    private readonly EcsFilter<StackGeneratorComponent, StackComponent> _stackInteractorsFilter = null;
     private CancellationTokenSource _generationCTS;
 
     public void Destroy() {
         _generationCTS?.Cancel();
+        _generationCTS?.Dispose();
     }
 
     public void Init() {
@@ -24,19 +24,22 @@ sealed class StackGenerationSystem : IEcsInitSystem, IEcsDestroySystem {
         foreach(var entity in _stackInteractorsFilter) {
             ref var stackComponent = ref _stackInteractorsFilter.Get2(entity);
             ref var stackInteractorComponent = ref _stackInteractorsFilter.Get1(entity);
-            if (stackInteractorComponent.IsGenerator) {
-                stackComponent.Stack = new Stack<GameObject>();
-                StartGenerating(stackComponent, stackInteractorComponent, _generationCTS.Token);
-            }
+            StartGenerating(stackComponent, stackInteractorComponent, _generationCTS.Token);
         }
     }
 
-    private async void StartGenerating(StackComponent stackComponent, StackInteractorComponent stackGeneratorComponent, CancellationToken token) {
+    private async void StartGenerating(StackComponent stackComponent, StackGeneratorComponent stackGeneratorComponent, CancellationToken token) {
         while(!token.IsCancellationRequested) {
+            GenerateItems(stackComponent, stackGeneratorComponent);
+            await Task.Delay(stackGeneratorComponent.StackGenerationTime);
+        }
+    }
+
+    private void GenerateItems(StackComponent stackComponent, StackGeneratorComponent stackGeneratorComponent) {
+        for(int i = 0; i < stackGeneratorComponent.GenerationAmount; i++) {
             GameObject newItem = new GameObject();
             newItem.transform.parent = stackGeneratorComponent.GenerationSpot;
             stackComponent.Stack.Push(newItem);
-            await Task.Delay(stackGeneratorComponent.StackGenerationTime);
         }
     }
 }   

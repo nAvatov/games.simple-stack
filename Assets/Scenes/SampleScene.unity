@@ -776,10 +776,10 @@ RectTransform:
   m_Father: {fileID: 1532611966}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 137.90607, y: -33.699738}
-  m_SizeDelta: {x: 221.1281, y: 67.3995}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 136.7662, y: 33.700012}
+  m_SizeDelta: {x: 230.4757, y: 67.399506}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1167403816
 MonoBehaviour:
@@ -980,12 +980,34 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1635658744 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4135448205737739706, guid: 625636a092065944b885573c5ced7aca,
+    type: 3}
+  m_PrefabInstance: {fileID: 4135448207502353951}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2033345446 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4135448205737739705, guid: 625636a092065944b885573c5ced7aca,
     type: 3}
   m_PrefabInstance: {fileID: 4135448207502353951}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2033345458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635658744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a52f064287433b40983e775e290b980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value:
+    _playersTransform: {fileID: 2033345446}
+    _collectingDelay: 1000
+    _collectingRestriction: 3
 --- !u!1001 &4135448207502353951
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1068,7 +1090,8 @@ PrefabInstance:
       propertyPath: value._amountTMP
       value: 
       objectReference: {fileID: 1167403816}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4135448205737739694, guid: 625636a092065944b885573c5ced7aca, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 625636a092065944b885573c5ced7aca, type: 3}
 --- !u!1001 &8429668675202263477
 PrefabInstance:
@@ -1084,6 +1107,11 @@ PrefabInstance:
     - target: {fileID: 1915525397, guid: 2870ea0016b3f5b489a7ba85f522b677, type: 3}
       propertyPath: value._stackGenerationTime
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107785025762258607, guid: 2870ea0016b3f5b489a7ba85f522b677,
+        type: 3}
+      propertyPath: value._requestedDrainAmount
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8429668674096777746, guid: 2870ea0016b3f5b489a7ba85f522b677,
         type: 3}

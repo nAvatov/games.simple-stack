@@ -9,7 +9,7 @@ namespace Components {
         public Stack<GameObject> Stack;
         public string StackAmount {
             set {
-                _amountTMP.SetText(value);
+                _amountTMP?.SetText("sa" + value);
             }
         }
     }
