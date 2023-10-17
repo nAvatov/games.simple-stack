@@ -40,17 +40,14 @@ sealed class AgentsStackDrainingSystem : IEcsInitSystem, IEcsDestroySystem {
         CancellationToken token) {
             while (!token.IsCancellationRequested) {
                 if (Vector3.Distance(agentComponent.Position, stackInteractorComponent.InteractionPoint) <= stackInteractorComponent.AcceptableInteractionDistance) {
-                    DrainAgentsStack(agentComponent, stackInteractorComponent, interactorsStackComponent, agentStackComponent, stackDrainerComponent);
+                    DrainAgentsStack(agentComponent, stackInteractorComponent, interactorsStackComponent, agentStackComponent, ref stackDrainerComponent);
                 }
                 await Task.Delay(stackDrainerComponent.DrainDuration);
             }
     }
 
-    private void DrainAgentsStack(AgentComponent agentComponent, StackInteractorComponent stackInteractorComponent, StackComponent interactorsStackComponent, StackComponent agentStackComponent, StackDrainerComponent stackDrainerComponent) {
-        // Request satisfied
+    private void DrainAgentsStack(AgentComponent agentComponent, StackInteractorComponent stackInteractorComponent, StackComponent interactorsStackComponent, StackComponent agentStackComponent, ref StackDrainerComponent stackDrainerComponent) {
         if (stackDrainerComponent.RequestedDrainAmount == interactorsStackComponent.Stack.Count) {
-            Debug.Log("was Requested" + stackDrainerComponent.RequestedDrainAmount);
-            Debug.Log("Delivered" + interactorsStackComponent.Stack.Count);
             stackDrainerComponent.RequestedDrainAmount = _drainRandomizer.Next(1, stackDrainerComponent.MaxRequestAmount);
             interactorsStackComponent.Stack.Clear();
             return;

@@ -14,7 +14,7 @@ namespace Components {
             }
             set {
                 _requestedDrainAmount = value;
-                _requestedAmountTMP.SetText("o" + value);
+                _requestedAmountTMP.SetText("ordered: " + value);
             }
         }
         public int DrainDuration => _drainDuration;
