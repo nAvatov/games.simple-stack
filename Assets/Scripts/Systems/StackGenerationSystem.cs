@@ -21,20 +21,19 @@ sealed class StackGenerationSystem : IEcsRunSystem {
     }
 
     private void GenerateItems(StackComponent stackComponent, ref StackGeneratorComponent stackGeneratorComponent) {
-        for(int i = 0; i < stackGeneratorComponent.GenerationAmount; i++) {
-
-            var stackObjectPrefab = Resources.Load<GameObject>("Burger");
-            var obj = GameObject.Instantiate(stackObjectPrefab);
-            
-            PlaceNewItem(obj, ref stackGeneratorComponent);
-
-            stackComponent.Stack.Push(obj);
+        if (stackComponent.Stack.Count >= 10) {
+            return; // TODO
         }
+
+        var stackObjectPrefab = Resources.Load<GameObject>("Burger"); // TODO
+        var obj = GameObject.Instantiate(stackObjectPrefab);
+        
+        PlaceNewItem(obj, ref stackGeneratorComponent);
+
+        stackComponent.Stack.Push(obj);
     }
 
     private void PlaceNewItem(GameObject item, ref StackGeneratorComponent stackGeneratorComponent) {
-        Debug.Log(stackGeneratorComponent.NextPlacementPositionIndex);
-        
         if (stackGeneratorComponent.NextPlacementPositionIndex < 0 || stackGeneratorComponent.NextPlacementPositionIndex >= stackGeneratorComponent.GenerationSpotsHolder.childCount) {
             stackGeneratorComponent.GenerationSpotsHolder.localPosition = new Vector3(0f, stackGeneratorComponent.GenerationSpotsHolder.position.y + 0.1f, 0f);
             stackGeneratorComponent.NextPlacementPositionIndex = 0;

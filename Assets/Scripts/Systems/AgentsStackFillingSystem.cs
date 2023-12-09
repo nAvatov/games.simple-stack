@@ -2,8 +2,6 @@ using Leopotam.Ecs;
 using Components;
 using UnityEngine;
 using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 
 sealed class AgentsStackFillingSystem : IEcsRunSystem{
     private readonly EcsWorld _world = null;
@@ -23,6 +21,7 @@ sealed class AgentsStackFillingSystem : IEcsRunSystem{
                 ref var agentLootDelayComponent = ref _agentStackFilter.Get3(agentEntity);
                 if (agentLootDelayComponent.IsTimerExpired) {
                     if (Vector3.Distance(agentComponent.Position, stackInteractorComponent.InteractionPoint) <= stackInteractorComponent.AcceptableInteractionDistance) {
+                        Debug.Log("Trying to fill");
                         TryFillAgentsStack(agentComponent, interactorsStackComponent, agentStackComponent);
                     }
 
