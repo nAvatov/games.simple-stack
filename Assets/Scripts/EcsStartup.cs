@@ -28,6 +28,7 @@ public class EcsStartup : MonoBehaviour {
         _systems
             .Add(new PlayerInputSystem())
             .Add(new MovementSystem())
+            .Add(new DelaySystem())
             .Add(new StackDisplayingSystem())
             .Add(new StackGenerationSystem())
             .Add(new AgentsStackFillingSystem())

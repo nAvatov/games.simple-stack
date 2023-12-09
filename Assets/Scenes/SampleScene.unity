@@ -123,6 +123,34 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &91357487 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4507015858011753156, guid: 2870ea0016b3f5b489a7ba85f522b677,
+    type: 3}
+  m_PrefabInstance: {fileID: 8429668675202263477}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &96459056 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8429668673824207034, guid: 2870ea0016b3f5b489a7ba85f522b677,
+    type: 3}
+  m_PrefabInstance: {fileID: 8429668675202263477}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &96459069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96459056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a4661014b57e8349a899b5d82eb2dae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value:
+    TimerDuration: 3
+    TimerState: 0
+    IsTimerExpired: 0
 --- !u!1 &175409277
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,7 +500,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 40
+  field of view: 50
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -569,7 +597,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 2033345446}
   m_Follow: {fileID: 2033345446}
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 50
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -1100,19 +1128,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1915525397, guid: 2870ea0016b3f5b489a7ba85f522b677, type: 3}
-      propertyPath: value._collectDistance
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1915525397, guid: 2870ea0016b3f5b489a7ba85f522b677, type: 3}
-      propertyPath: value._stackGenerationTime
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 3107785025762258607, guid: 2870ea0016b3f5b489a7ba85f522b677,
+    - target: {fileID: 1625298409747642560, guid: 2870ea0016b3f5b489a7ba85f522b677,
         type: 3}
-      propertyPath: value._requestedDrainAmount
-      value: 3
-      objectReference: {fileID: 0}
+      propertyPath: value._generationCollector
+      value: 
+      objectReference: {fileID: 91357487}
     - target: {fileID: 8429668674096777746, guid: 2870ea0016b3f5b489a7ba85f522b677,
         type: 3}
       propertyPath: m_Name
