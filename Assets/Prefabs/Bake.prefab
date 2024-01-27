@@ -101,7 +101,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7798956209160492045}
+  - component: {fileID: 2092867576329044646}
   m_Layer: 0
   m_Name: 'Spawn point '
   m_TagString: Untagged
@@ -109,7 +109,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7798956209160492045
+--- !u!4 &2092867576329044646
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -429,6 +429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value:
     _amountTMP: {fileID: 5704708795390721841}
+    StackAmount: 0
 --- !u!114 &1915525398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,9 +457,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value:
     _generationAmount: 1
-    _stackGenerationTime: 1000
-    _generationSpotsHolder: {fileID: 8291016281560438102}
-    NextPlacementPositionIndex: 0
 --- !u!114 &7253319879241479278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -815,7 +813,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7798956209160492045}
+  - {fileID: 2092867576329044646}
   - {fileID: 8495533625681749663}
   - {fileID: 1788199349217179918}
   - {fileID: 2613987755875793228}

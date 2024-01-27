@@ -151,6 +151,24 @@ MonoBehaviour:
     TimerDuration: 3
     TimerState: 0
     IsTimerExpired: 0
+--- !u!114 &96459078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96459056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6afac1817ed9f546abeefc6f9fdf646, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value:
+    _resourceName: Burger
+    _generationChunkAmount: 10
+    _generationSpotsHolder: {fileID: 1857154471}
+    _generationCollector: {fileID: 91357487}
+    NextPlacementPositionIndex: 0
 --- !u!1 &175409277
 GameObject:
   m_ObjectHideFlags: 0
@@ -1014,6 +1032,24 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4135448207502353951}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1857154471 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5585510729469579717, guid: 2870ea0016b3f5b489a7ba85f522b677,
+    type: 3}
+  m_PrefabInstance: {fileID: 8429668675202263477}
+  m_PrefabAsset: {fileID: 0}
+--- !u!156049354 &1857154473
+Grid:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857154471}
+  m_Enabled: 1
+  m_CellSize: {x: 1, y: 1, z: 1}
+  m_CellGap: {x: 0, y: 0, z: 0}
+  m_CellLayout: 0
+  m_CellSwizzle: 5
 --- !u!4 &2033345446 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4135448205737739705, guid: 625636a092065944b885573c5ced7aca,
@@ -1133,6 +1169,16 @@ PrefabInstance:
       propertyPath: value._generationCollector
       value: 
       objectReference: {fileID: 91357487}
+    - target: {fileID: 5503909051487391525, guid: 2870ea0016b3f5b489a7ba85f522b677,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5503909051487391525, guid: 2870ea0016b3f5b489a7ba85f522b677,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8429668674096777746, guid: 2870ea0016b3f5b489a7ba85f522b677,
         type: 3}
       propertyPath: m_Name

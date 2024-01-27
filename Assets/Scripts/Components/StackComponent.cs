@@ -7,7 +7,8 @@ namespace Components {
     public struct StackComponent {
         [SerializeField] private TMPro.TextMeshProUGUI _amountTMP;
         public Stack<GameObject> Stack;
-        public string StackAmount {
+        public uint StackAmount;
+        public string DisplayedStackAmount {
             set {
                 _amountTMP?.SetText("stacked: " + value);
             }

@@ -19,6 +19,7 @@ sealed class DelaySystem : IEcsRunSystem, IEcsInitSystem {
         foreach(var entity in _delayFilter) {
             ref var delayComponent = ref _delayFilter.Get1(entity);
 
+            // This condition requiers manual TimerState update in referenced systems
             if (delayComponent.TimerState > 0f) {
                 delayComponent.TimerState -= Time.deltaTime;
  

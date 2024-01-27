@@ -13,35 +13,19 @@ sealed class StackGenerationSystem : IEcsRunSystem {
             ref var delayComponent = ref _stackGeneratorsFilter.Get3(entity);
 
             if (delayComponent.IsTimerExpired) {
-                GenerateItems(stackComponent, ref stackInteractorComponent);
+                GenerateItems(ref stackComponent, stackInteractorComponent);
+                
                 delayComponent.IsTimerExpired = false;
                 delayComponent.TimerState = delayComponent.TimerDuration;
             }
         }
     }
 
-    private void GenerateItems(StackComponent stackComponent, ref StackGeneratorComponent stackGeneratorComponent) {
-        if (stackComponent.Stack.Count >= 10) {
-            return; // TODO
-        }
 
-        var stackObjectPrefab = Resources.Load<GameObject>("Burger"); // TODO
-        var obj = GameObject.Instantiate(stackObjectPrefab);
-        
-        PlaceNewItem(obj, ref stackGeneratorComponent);
-
-        stackComponent.Stack.Push(obj);
-    }
-
-    private void PlaceNewItem(GameObject item, ref StackGeneratorComponent stackGeneratorComponent) {
-        if (stackGeneratorComponent.NextPlacementPositionIndex < 0 || stackGeneratorComponent.NextPlacementPositionIndex >= stackGeneratorComponent.GenerationSpotsHolder.childCount) {
-            stackGeneratorComponent.GenerationSpotsHolder.localPosition = new Vector3(0f, stackGeneratorComponent.GenerationSpotsHolder.position.y + 0.1f, 0f);
-            stackGeneratorComponent.NextPlacementPositionIndex = 0;
-        }
-
-        item.transform.parent = stackGeneratorComponent.GenerationSpotsHolder.transform.GetChild(stackGeneratorComponent.NextPlacementPositionIndex);
-        item.transform.localPosition = new Vector3(0,0,0);
-        item.transform.parent = stackGeneratorComponent.GenerationCollector;
-        stackGeneratorComponent.NextPlacementPositionIndex++;
+    // In seeking of optimization increasing some uint value as real stack amount and using Stack<GameObject> as
+    // visualizing tool is better option.
+    private void GenerateItems(ref StackComponent stackComponent, StackGeneratorComponent stackGeneratorComponent) {
+        stackComponent.StackAmount += stackGeneratorComponent.GenerationAmount;
+        Debug.Log(stackComponent.StackAmount);
     }
 }   
