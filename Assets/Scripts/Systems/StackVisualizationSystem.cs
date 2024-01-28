@@ -26,6 +26,7 @@ sealed class StackVisualizationSystem : IEcsRunSystem {
 
         var stackObjectPrefab = Resources.Load<GameObject>(stackVisualizationComponent.ResourceName); // TODO
         var obj = GameObject.Instantiate(stackObjectPrefab);
+        stackComponent.Stack.Push(obj);
 
         PlaceNewItem(obj, ref stackVisualizationComponent);
     }
@@ -36,9 +37,11 @@ sealed class StackVisualizationSystem : IEcsRunSystem {
             stackVisualizationComponent.NextPlacementPositionIndex = 0;
         }
 
-        item.transform.parent = stackVisualizationComponent.GenerationSpotsHolder.transform.GetChild(stackVisualizationComponent.NextPlacementPositionIndex);
-        item.transform.localPosition = new Vector3(0,0,0);
-        item.transform.parent = stackVisualizationComponent.GenerationCollector;
+        Transform spotTransform = stackVisualizationComponent.GenerationSpotsHolder.transform.GetChild(stackVisualizationComponent.NextPlacementPositionIndex);
+        item.transform.SetParent(spotTransform, true);
+        item.transform.localPosition = new Vector3(0, 0, 0);
+        
+        item.transform.SetParent(stackVisualizationComponent.GenerationCollector, true);
         stackVisualizationComponent.NextPlacementPositionIndex++;
     }
 }
