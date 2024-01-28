@@ -30,7 +30,7 @@ sealed class StackDisplayingSystem : IEcsInitSystem, IEcsDestroySystem, IEcsRunS
         foreach(var entity in _stackFilter) {
             ref var stackComponent = ref _stackFilter.Get1(entity);
             if (stackComponent.Stack != null) {
-                stackComponent.DisplayedStackAmount = stackComponent.Stack.Count.ToString();
+                stackComponent.DisplayedStackAmount = stackComponent.StackAmount.ToString();
             }       
         }
     }

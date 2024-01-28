@@ -19,9 +19,8 @@ sealed class StackVisualizationSystem : IEcsRunSystem {
 
     private void VisualizeStack(ref StackComponent stackComponent, ref StackVisualizationComponent stackVisualizationComponent) {
         if (stackComponent.Stack.Count >= stackVisualizationComponent.GenerationChunkAmount) {
-            Debug.Log("Generation chunk amount reached!");
-            // Recalculate gap
-            return; // TODO
+            // At this point we're not spawning new objects, but increasing the StackAmount
+            return; 
         }
 
         var stackObjectPrefab = Resources.Load<GameObject>(stackVisualizationComponent.ResourceName); // TODO
@@ -33,7 +32,9 @@ sealed class StackVisualizationSystem : IEcsRunSystem {
 
     private void PlaceNewItem(GameObject item, ref StackVisualizationComponent stackVisualizationComponent) {
         if (stackVisualizationComponent.NextPlacementPositionIndex < 0 || stackVisualizationComponent.NextPlacementPositionIndex >= stackVisualizationComponent.GenerationSpotsHolder.childCount) {
-            stackVisualizationComponent.GenerationSpotsHolder.localPosition = new Vector3(0f, stackVisualizationComponent.GenerationSpotsHolder.position.y + 0.1f, 0f);
+            Vector3 newSpotsPosition = stackVisualizationComponent.GenerationSpotsHolder.position;
+            newSpotsPosition[1] = stackVisualizationComponent.GenerationSpotsHolder.position.y + 0.6f;
+            stackVisualizationComponent.GenerationSpotsHolder.position = newSpotsPosition;
             stackVisualizationComponent.NextPlacementPositionIndex = 0;
         }
 

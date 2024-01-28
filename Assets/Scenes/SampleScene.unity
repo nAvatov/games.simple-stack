@@ -1140,6 +1140,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.872
       objectReference: {fileID: 0}
+    - target: {fileID: 8189533583992847266, guid: 2870ea0016b3f5b489a7ba85f522b677,
+        type: 3}
+      propertyPath: m_margin.x
+      value: 55.624115
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189533583992847266, guid: 2870ea0016b3f5b489a7ba85f522b677,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8429668674096777746, guid: 2870ea0016b3f5b489a7ba85f522b677,
         type: 3}
       propertyPath: m_Name
@@ -1228,7 +1238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value:
     _resourceName: Burger
-    _generationChunkAmount: 10
+    _generationChunkAmount: 30
     _generationSpotsHolder: {fileID: 1857154471}
     _generationCollector: {fileID: 91357487}
     NextPlacementPositionIndex: 0
@@ -1245,7 +1255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    TimerDuration: 3
+    TimerDuration: 0.5
     TimerState: 0
     IsTimerExpired: 0
 --- !u!114 &8429668675202263481
