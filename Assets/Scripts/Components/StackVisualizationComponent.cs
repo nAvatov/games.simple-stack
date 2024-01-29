@@ -8,6 +8,7 @@ namespace Components {
         [SerializeField] private int _generationChunkAmount;
         [SerializeField] private GameObject _generationSpotsHolder;
         [SerializeField] private GameObject _generationCollector;
+        public bool IsVisualizationRequired;
         public int NextPlacementPositionIndex;
         public string ResourceName => _resourceName;
         public Transform GenerationSpotsHolder => _generationSpotsHolder.transform;

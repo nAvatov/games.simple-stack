@@ -26,6 +26,5 @@ sealed class StackGenerationSystem : IEcsRunSystem {
     // visualizing tool is better option.
     private void GenerateItems(ref StackComponent stackComponent, StackGeneratorComponent stackGeneratorComponent) {
         stackComponent.StackAmount += stackGeneratorComponent.GenerationAmount;
-        Debug.Log(stackComponent.StackAmount);
     }
 }   

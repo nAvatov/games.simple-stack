@@ -2,16 +2,22 @@ using UnityEngine;
 using Leopotam.Ecs;
 using Components;
 
-sealed class StackVisualizationSystem : IEcsRunSystem {
+sealed class StackVisualizationSystem : IEcsRunSystem, IEcsInitSystem {
     private readonly EcsWorld _world = null;
     private readonly EcsFilter<StackComponent, StackVisualizationComponent> _stackVisualizationFilter = null;
-
+    public void Init() {
+        foreach(var entity in  _stackVisualizationFilter) {
+            ref var stackVisualizationComponent = ref _stackVisualizationFilter.Get2(entity);
+            stackVisualizationComponent.IsVisualizationRequired = true;
+        }
+    }
+    
     public void Run() {
         foreach(var entity in  _stackVisualizationFilter) {
             ref var stackComponent = ref _stackVisualizationFilter.Get1(entity);
             ref var stackVisualizationComponent = ref _stackVisualizationFilter.Get2(entity);
             
-            if (stackComponent.Stack.Count < stackComponent.StackAmount) {
+            if (stackComponent.Stack.Count < stackComponent.StackAmount && stackVisualizationComponent.IsVisualizationRequired) {
                 VisualizeStack(ref stackComponent, ref stackVisualizationComponent);
             }
         }
