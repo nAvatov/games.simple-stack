@@ -25,7 +25,7 @@ sealed class StackGenerationSystem : IEcsRunSystem{
     // In seeking of optimization increasing some uint value as real stack amount and using Stack<GameObject> as
     // visualizing tool is better option.
     private void GenerateItems(ref StackComponent stackComponent, ref StackGeneratorComponent stackGeneratorComponent) {
-        if (stackComponent.ObservableStack.Count >= stackGeneratorComponent.GenerationAmountRestriction) {
+        if (stackComponent.ObservableStack.Count >= stackGeneratorComponent.AvaiableItemSpots.Count) {
             // At this point we're not spawning new objects
             return; 
         }
@@ -38,14 +38,7 @@ sealed class StackGenerationSystem : IEcsRunSystem{
     }
 
     private void PlaceNewItem(GameObject item, ref StackGeneratorComponent stackGeneratorComponent) {
-        if (stackGeneratorComponent.NextPlacementPositionIndex < 0 || stackGeneratorComponent.NextPlacementPositionIndex >= stackGeneratorComponent.GenerationSpotsHolder.childCount) {
-            Vector3 newSpotsPosition = stackGeneratorComponent.GenerationSpotsHolder.position;
-            newSpotsPosition[1] = stackGeneratorComponent.GenerationSpotsHolder.position.y + 0.6f;
-            stackGeneratorComponent.GenerationSpotsHolder.position = newSpotsPosition;
-            stackGeneratorComponent.NextPlacementPositionIndex = 0;
-        }
-
-        Transform spotTransform = stackGeneratorComponent.GenerationSpotsHolder.transform.GetChild(stackGeneratorComponent.NextPlacementPositionIndex);
+        Transform spotTransform = stackGeneratorComponent.AvaiableItemSpots[stackGeneratorComponent.NextPlacementPositionIndex];
         item.transform.SetParent(spotTransform, true);
         item.transform.localPosition = new Vector3(0, 0, 0);
         

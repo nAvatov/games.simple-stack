@@ -27,6 +27,7 @@ sealed class AgentsStackFillingSystem : IEcsRunSystem{
                         // Blocking delay system on particular generator entity. TODO
                         generatorDelayComponent.TimerState = -1f;
                         TryFillAgentsStack(agentComponent, generatorStackComponent, agentStackComponent, ref generatorComponent);
+                        generatorDelayComponent.TimerState = generatorDelayComponent.TimerDuration;
                     }
 
                     agentLootDelayComponent.IsTimerExpired = false;
