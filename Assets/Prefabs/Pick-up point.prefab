@@ -289,7 +289,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4516020722687352089}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7, z: 0.311}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0.311}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -455,9 +455,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
+    _collectorSpot: {fileID: 2878759297122121559}
+    _drainedItemsSpot: {fileID: 8992643587234427050}
     _requestedAmountTMP: {fileID: 8465050374136759520}
     _maxRequestAmount: 7
-    _drainDuration: 500
 --- !u!1 &8465050373822190874
 GameObject:
   m_ObjectHideFlags: 0
