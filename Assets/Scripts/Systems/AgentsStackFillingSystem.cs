@@ -1,7 +1,6 @@
 using Leopotam.Ecs;
 using Components;
 using UnityEngine;
-using System.Collections.Generic;
 using DG.Tweening;
 
 sealed class AgentsStackFillingSystem : IEcsRunSystem{
@@ -56,10 +55,8 @@ sealed class AgentsStackFillingSystem : IEcsRunSystem{
 
     private void CollectItem(AgentComponent agentComponent, GameObject item) {
         item.transform.SetParent(agentComponent.CollectedItemsPlacement);
-        item.transform.DOMove(agentComponent.AvaiableStackSpot, 0.5f);
+        item.transform.DOMove(agentComponent.AvaiableStackSpot.position, 0.5f);
         
-        Vector3 newAvaiableSpot = agentComponent.AvaiableStackSpot;
-        newAvaiableSpot[1] += 0.55f;
-        agentComponent.AvaiableStackSpot = newAvaiableSpot;
+        HeightDeltaHandler.HandleSpotPosition(agentComponent.AvaiableStackSpot, agentComponent.SpotHeightDelta, true);
     }
 }

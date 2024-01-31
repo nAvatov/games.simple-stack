@@ -4,8 +4,11 @@ using System;
 namespace Components {
     [Serializable]
     public struct StackDrainerComponent {
-        [SerializeField] private Transform _collectorSpot;
-        [SerializeField] private Transform _drainedItemsSpot;
+        [Header("Item Placement")]
+        [SerializeField] private Transform _itemsPlacement;
+        [SerializeField] private Transform _avaiableSpot;
+        [SerializeField] private float _spotHeightDelta;
+        [Header("Request")]
         [SerializeField] private TMPro.TextMeshProUGUI _requestedAmountTMP; 
         [SerializeField] private int _maxRequestAmount;
         private int _requestedDrainAmount;
@@ -18,16 +21,17 @@ namespace Components {
                 _requestedAmountTMP.SetText("ordered: " + value);
             }
         }
-        public Vector3 AvaiableItemSpot {
+        public Transform AvaiableItemSpot {
             get {
-                return _drainedItemsSpot.position;
+                return _avaiableSpot;
             }
 
             set {
-                _drainedItemsSpot.position = value;
+                _avaiableSpot = value;
             }
         }
-        public Transform CollectorSpot => _collectorSpot;
+        public Transform CollectorSpot => _itemsPlacement;
+        public float HeightDelta => _spotHeightDelta;
         public int MaxRequestAmount => _maxRequestAmount;
     }
 }

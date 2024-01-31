@@ -48,14 +48,13 @@ sealed class AgentsStackDrainingSystem : IEcsInitSystem, IEcsRunSystem {
         
         if (agentStackComponent.ObservableStack.TryPop(out GameObject result)) {
             result.transform.SetParent(stackDrainerComponent.CollectorSpot, true);
-            result.transform.DOMove(stackDrainerComponent.AvaiableItemSpot, 0.5f)
+            result.transform.DOMove(stackDrainerComponent.AvaiableItemSpot.position, 0.5f)
                 .OnComplete(() => { 
                     interactorsStackComponent.ObservableStack.Push(result);
                 });
             
-            Vector3 newItemSpot = stackDrainerComponent.AvaiableItemSpot;
-            newItemSpot[1] += 0.55f;
-            stackDrainerComponent.AvaiableItemSpot = newItemSpot;
+            HeightDeltaHandler.HandleSpotPosition(stackDrainerComponent.AvaiableItemSpot, stackDrainerComponent.HeightDelta, true);
+            HeightDeltaHandler.HandleSpotPosition(agentComponent.AvaiableStackSpot, agentComponent.SpotHeightDelta, false);
         }
     }
 }
