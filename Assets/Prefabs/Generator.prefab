@@ -496,12 +496,6 @@ GameObject:
   - component: {fileID: 4594939599168674816}
   - component: {fileID: 4594939599168674817}
   - component: {fileID: 4594939599168674818}
-  - component: {fileID: 8481563204717195553}
-  - component: {fileID: 8481563204717195555}
-  - component: {fileID: 6752738131920245862}
-  - component: {fileID: 1232975624640535643}
-  - component: {fileID: 5420279820781843867}
-  - component: {fileID: 5420279820781843936}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -587,97 +581,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8481563204717195553
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4594939599168674844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 533f7fff9105c6d4bb78ead904648dc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value:
-    _amountTMP: {fileID: 4224273787456247556}
-    StackAmount: 0
---- !u!114 &8481563204717195555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4594939599168674844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 863c7f7460b2b49abb4fa9a7ff9cb180, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  convertMode: 0
---- !u!114 &6752738131920245862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4594939599168674844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f15c5b3c6b068f349b06a5da1a19548f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value:
-    _generationAmount: 1
---- !u!114 &1232975624640535643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4594939599168674844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 339a70b1cf953a84189223873c3d8f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value:
-    _acceptableInteractionDistance: 1
-    _interactionPoint: {fileID: 4594939598381044217}
---- !u!114 &5420279820781843867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4594939599168674844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a4661014b57e8349a899b5d82eb2dae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value:
-    TimerDuration: 3
-    TimerState: 0
-    IsTimerExpired: 0
---- !u!114 &5420279820781843936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4594939599168674844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6afac1817ed9f546abeefc6f9fdf646, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value:
-    _resourceName: Burger
-    _generationChunkAmount: 10
-    _generationSpotsHolder: {fileID: 484994223443967331}
-    _generationCollector: {fileID: 8481563205645330018}
-    NextPlacementPositionIndex: 0
 --- !u!1 &5370397015587809756
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,7 +782,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8481563205645330029}
   m_Layer: 0
-  m_Name: Generation Spot
+  m_Name: Generation Collector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

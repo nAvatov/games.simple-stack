@@ -47,18 +47,18 @@ sealed class AgentsStackDrainingSystem : IEcsInitSystem, IEcsDestroySystem {
     }
 
     private void DrainAgentsStack(AgentComponent agentComponent, StackInteractorComponent stackInteractorComponent, StackComponent interactorsStackComponent, StackComponent agentStackComponent, ref StackDrainerComponent stackDrainerComponent) {
-        if (stackDrainerComponent.RequestedDrainAmount == interactorsStackComponent.Stack.Count) {
+        if (stackDrainerComponent.RequestedDrainAmount == interactorsStackComponent.ObservableStack.Count) {
             stackDrainerComponent.RequestedDrainAmount = _drainRandomizer.Next(1, stackDrainerComponent.MaxRequestAmount);
-            interactorsStackComponent.Stack.Clear();
+            interactorsStackComponent.ObservableStack.Stack.Clear();
             return;
         }
 
-        if (agentStackComponent.Stack.Count == 0) {
+        if (agentStackComponent.ObservableStack.Count == 0) {
             return;
         }
         
-        if (agentStackComponent.Stack.TryPop(out GameObject result)) {
-            interactorsStackComponent.Stack.Push(result);
+        if (agentStackComponent.ObservableStack.TryPop(out GameObject result)) {
+            interactorsStackComponent.ObservableStack.Push(result);
         }
     }
 

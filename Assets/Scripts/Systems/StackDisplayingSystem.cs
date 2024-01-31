@@ -16,8 +16,8 @@ sealed class StackDisplayingSystem : IEcsInitSystem, IEcsDestroySystem, IEcsRunS
     public void Init() {
         foreach(var entity in _stackFilter) {
             ref var stackComponent = ref _stackFilter.Get1(entity);
-            if (stackComponent.Stack == null) {
-                stackComponent.Stack = new Stack<UnityEngine.GameObject>();
+            if (stackComponent.ObservableStack == null) {
+                stackComponent.ObservableStack.CreateStack();
             }       
         }
     }
@@ -29,8 +29,8 @@ sealed class StackDisplayingSystem : IEcsInitSystem, IEcsDestroySystem, IEcsRunS
     private void DisplayStackAmount() {
         foreach(var entity in _stackFilter) {
             ref var stackComponent = ref _stackFilter.Get1(entity);
-            if (stackComponent.Stack != null) {
-                stackComponent.DisplayedStackAmount = stackComponent.StackAmount.ToString();
+            if (stackComponent.ObservableStack != null) {
+                stackComponent.DisplayedStackAmount = stackComponent.ObservableStack.Count.ToString();
             }       
         }
     }
