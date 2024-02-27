@@ -36,6 +36,8 @@ public class EcsStartup : MonoBehaviour {
             .Add(new StackGenerationSystem())
             
             .Add(new AgentsStackFillingSystem())
-            .Add(new AgentsStackDrainingSystem());
+            .Add(new AgentsStackDrainingSystem())
+            
+            .Add(new RequestedOrderFulfieldSystem());
     }
 }

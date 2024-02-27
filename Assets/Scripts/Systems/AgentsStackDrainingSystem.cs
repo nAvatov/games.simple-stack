@@ -4,16 +4,10 @@ using UnityEngine;
 using DG.Tweening;
 
 
-sealed class AgentsStackDrainingSystem : IEcsInitSystem, IEcsRunSystem {
+sealed class AgentsStackDrainingSystem : IEcsRunSystem {
     private readonly EcsWorld _world = null;
     private readonly EcsFilter<AgentComponent, StackComponent> _agentStackFilter = null;
     private readonly EcsFilter<StackInteractorComponent, StackDrainerComponent, StackComponent> _stackInteractionFilter = null;
-    private System.Random _drainRandomizer;
-
-    public void Init() {
-        _drainRandomizer = new System.Random();
-    }
-
     public void Run() {
         InitializeStackInteraction();
     }
@@ -23,7 +17,6 @@ sealed class AgentsStackDrainingSystem : IEcsInitSystem, IEcsRunSystem {
             ref var stackInteractorComponent = ref _stackInteractionFilter.Get1(entity);
             ref var stackDrainerComponent = ref _stackInteractionFilter.Get2(entity);
             ref var interactorsStackComponent = ref _stackInteractionFilter.Get3(entity);
-            stackDrainerComponent.RequestedDrainAmount = _drainRandomizer.Next(1, stackDrainerComponent.MaxRequestAmount);
             foreach(var agentEntity in _agentStackFilter) {
                 ref var agentComponent = ref _agentStackFilter.Get1(agentEntity);
                 ref var agentStackComponent = ref _agentStackFilter.Get2(agentEntity);
@@ -35,13 +28,6 @@ sealed class AgentsStackDrainingSystem : IEcsInitSystem, IEcsRunSystem {
     }
 
     private void DrainAgentsStack(AgentComponent agentComponent, StackInteractorComponent stackInteractorComponent, StackComponent interactorsStackComponent, StackComponent agentStackComponent, ref StackDrainerComponent stackDrainerComponent) {
-        // If requested amount is satisfyied
-        if (stackDrainerComponent.RequestedDrainAmount == interactorsStackComponent.ObservableStack.Count) {
-            stackDrainerComponent.RequestedDrainAmount = _drainRandomizer.Next(1, stackDrainerComponent.MaxRequestAmount);
-            interactorsStackComponent.ObservableStack.Stack.Clear();
-            return;
-        }
-
         if (agentStackComponent.ObservableStack.Count == 0) {
             return;
         }
