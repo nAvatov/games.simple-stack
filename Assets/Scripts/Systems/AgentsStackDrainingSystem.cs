@@ -28,14 +28,15 @@ sealed class AgentsStackDrainingSystem : IEcsRunSystem {
     }
 
     private void DrainAgentsStack(AgentComponent agentComponent, StackInteractorComponent stackInteractorComponent, StackComponent interactorsStackComponent, StackComponent agentStackComponent, ref StackDrainerComponent stackDrainerComponent) {
-        if (agentStackComponent.ObservableStack.Count == 0) {
+        if (agentStackComponent.ObservableStack.Count == 0 || stackDrainerComponent.RequestedDrainAmount == 0) {
             return;
         }
         
-        if (agentStackComponent.ObservableStack.TryPop(out GameObject result)) {
+        if (agentStackComponent.ObservableStack.TryPop(out GameObject result) && stackDrainerComponent.RequestedDrainAmount < agentStackComponent.ObservableStack.Count) {
             result.transform.SetParent(stackDrainerComponent.CollectorSpot, true);
             result.transform.DOMove(stackDrainerComponent.AvaiableItemSpot.position, 0.5f)
                 .OnComplete(() => { 
+                    result.transform.DOKill();
                     interactorsStackComponent.ObservableStack.Push(result);
                 });
             

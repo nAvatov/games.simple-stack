@@ -14,7 +14,7 @@ sealed class RequestedOrderFulfieldSystem : IEcsRunSystem, IEcsInitSystem {
         
         foreach(var entity in _stackDrainersFilter) {
             ref var draingerComponent = ref _stackDrainersFilter.Get1(entity);
-            draingerComponent.RequestedDrainAmount = _drainRandomizer.Next(1, draingerComponent.MaxRequestAmount);
+            draingerComponent.RequestedDrainAmount = 2;
         }
     }
 
@@ -27,10 +27,11 @@ sealed class RequestedOrderFulfieldSystem : IEcsRunSystem, IEcsInitSystem {
             ref var drainerComponent = ref _stackDrainersFilter.Get1(entity);
             ref var drainerStackComponent = ref _stackDrainersFilter.Get2(entity);
 
-            if (drainerStackComponent.ObservableStack.Count == drainerComponent.RequestedDrainAmount) {
+            if (drainerStackComponent.ObservableStack.Count >= drainerComponent.RequestedDrainAmount) {
                 RemoveClient(drainerComponent);
+                
                 drainerStackComponent.ObservableStack.Stack.Clear();
-                drainerComponent.RequestedDrainAmount = _drainRandomizer.Next(1, drainerComponent.MaxRequestAmount);
+                drainerComponent.RequestedDrainAmount = 0; //_drainRandomizer.Next(1, drainerComponent.MaxRequestAmount);
             }
         }
     }
@@ -38,6 +39,7 @@ sealed class RequestedOrderFulfieldSystem : IEcsRunSystem, IEcsInitSystem {
     private void RemoveClient(StackDrainerComponent drainerComponent) {
         for(int i = drainerComponent.CollectorSpot.childCount - 1; i > 0; i--) {
             GameObject.DestroyImmediate(drainerComponent.CollectorSpot.GetChild(i).gameObject);
+            HeightDeltaHandler.HandleSpotPosition(drainerComponent.AvaiableItemSpot, drainerComponent.HeightDelta, false);
         }
     }
 }
