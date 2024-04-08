@@ -6,7 +6,7 @@ using DG.Tweening;
 sealed class AgentsStackFillingSystem : IEcsRunSystem{
     private readonly EcsWorld _world = null;
     private readonly EcsFilter<AgentComponent, StackComponent, DelayComponent> _agentStackFilter = null;
-    private readonly EcsFilter<StackInteractorComponent, DelayComponent, StackComponent, StackGeneratorComponent> _stackInteractionFilter = null;
+    private readonly EcsFilter<StackBrockerComponent, DelayComponent, StackComponent, StackGeneratorComponent> _stackInteractionFilter = null;
     public void Run() {
         InitializeStackFilling();
     }

@@ -31,14 +31,14 @@ sealed class RequestedOrderFulfieldSystem : IEcsRunSystem, IEcsInitSystem {
                 RemoveClient(drainerComponent);
                 
                 drainerStackComponent.ObservableStack.Stack.Clear();
-                drainerComponent.RequestedDrainAmount = 0; //_drainRandomizer.Next(1, drainerComponent.MaxRequestAmount);
+                drainerComponent.RequestedDrainAmount = _drainRandomizer.Next(1, drainerComponent.MaxRequestAmount);
             }
         }
     }
 
     private void RemoveClient(StackDrainerComponent drainerComponent) {
-        for(int i = drainerComponent.CollectorSpot.childCount - 1; i > 0; i--) {
-            GameObject.DestroyImmediate(drainerComponent.CollectorSpot.GetChild(i).gameObject);
+        for(int i = drainerComponent.Collector.childCount - 1; i >= 0; i--) {
+            GameObject.DestroyImmediate(drainerComponent.Collector.GetChild(i).gameObject);
             HeightDeltaHandler.HandleSpotPosition(drainerComponent.AvaiableItemSpot, drainerComponent.HeightDelta, false);
         }
     }

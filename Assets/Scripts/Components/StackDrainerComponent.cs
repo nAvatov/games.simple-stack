@@ -5,7 +5,7 @@ namespace Components {
     [Serializable]
     public struct StackDrainerComponent {
         [Header("Item Placement")]
-        [SerializeField] private Transform _itemsPlacement;
+        [SerializeField] private Transform _collector;
         [SerializeField] private Transform _avaiableSpot;
         [SerializeField] private float _spotHeightDelta;
         [Header("Request")]
@@ -30,7 +30,7 @@ namespace Components {
                 _avaiableSpot = value;
             }
         }
-        public Transform CollectorSpot => _itemsPlacement;
+        public Transform Collector => _collector;
         public float HeightDelta => _spotHeightDelta;
         public int MaxRequestAmount => _maxRequestAmount;
     }

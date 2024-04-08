@@ -3,7 +3,7 @@ using System;
 
 namespace Components {
     [Serializable]
-    public struct StackInteractorComponent {
+    public struct StackBrockerComponent {
         [SerializeField] private float _acceptableInteractionDistance;
         [SerializeField] private Transform _interactionPoint;
         public float AcceptableInteractionDistance => _acceptableInteractionDistance;
