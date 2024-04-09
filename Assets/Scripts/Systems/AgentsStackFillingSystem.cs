@@ -25,10 +25,10 @@ sealed class AgentsStackFillingSystem : IEcsRunSystem{
                     if (Vector3.Distance(agentComponent.Position, stackInteractorComponent.InteractionPoint) <= stackInteractorComponent.AcceptableInteractionDistance) {
                         // Blocking delay system on particular generator entity. TODO
                         generatorDelayComponent.TimerState = -1f;
-                        TryFillAgentsStack(agentComponent, generatorStackComponent, agentStackComponent, ref generatorComponent);
+                        TryFillAgentsStack(agentComponent, generatorStackComponent, agentStackComponent, ref generatorComponent, ref agentLootDelayComponent);
                         generatorDelayComponent.TimerState = generatorDelayComponent.TimerDuration;
                     }
-
+                    
                     agentLootDelayComponent.IsTimerExpired = false;
                     agentLootDelayComponent.TimerState = agentLootDelayComponent.TimerDuration;
                 }
@@ -36,7 +36,7 @@ sealed class AgentsStackFillingSystem : IEcsRunSystem{
         }
     }
 
-    private void TryFillAgentsStack(AgentComponent agentComponent, StackComponent interactorsStackComponent, StackComponent agentStackComponent, ref StackGeneratorComponent generatorComponent) {
+    private void TryFillAgentsStack(AgentComponent agentComponent, StackComponent interactorsStackComponent, StackComponent agentStackComponent, ref StackGeneratorComponent generatorComponent, ref DelayComponent delayComponent) {
         if (agentStackComponent.ObservableStack == null) {
             agentStackComponent.ObservableStack.CreateStack();
         }
@@ -45,6 +45,7 @@ sealed class AgentsStackFillingSystem : IEcsRunSystem{
         // while loop here if multiple collecting at the same time is required
         if (agentStackComponent.ObservableStack.Count < agentComponent.CollectingRestriction && interactorsStackComponent.ObservableStack.Count > 0) {
             if (interactorsStackComponent.ObservableStack.TryPop(out GameObject result)) {
+                delayComponent.IsDisplayable = true;
                 agentStackComponent.ObservableStack.Push(result);
                 CollectItem(agentComponent, result);
                 

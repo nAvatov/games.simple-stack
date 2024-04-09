@@ -11,6 +11,7 @@ sealed class DelaySystem : IEcsRunSystem, IEcsInitSystem {
         foreach(var entity in _delayFilter) {
             ref var delayComponent = ref _delayFilter.Get1(entity);
 
+            delayComponent.IsDisplayable = false;
             delayComponent.TimerState = delayComponent.TimerDuration;
         }
     }
@@ -25,6 +26,7 @@ sealed class DelaySystem : IEcsRunSystem, IEcsInitSystem {
  
                 if (delayComponent.TimerState <= 0f) {
                     delayComponent.IsTimerExpired = true;
+                    delayComponent.IsDisplayable = false;
                     delayComponent.TimerState = -1f;
                 }
             }

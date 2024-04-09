@@ -7,5 +7,6 @@ namespace Components {
         [SerializeField] public float TimerDuration;
         public float TimerState;
         public bool IsTimerExpired;
+        public bool IsDisplayable;
     }
 }

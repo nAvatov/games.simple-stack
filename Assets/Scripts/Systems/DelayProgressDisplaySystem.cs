@@ -16,7 +16,7 @@ sealed class DelayProgressDisplaySystem : IEcsRunSystem{
             ref var progressDisplayComponent = ref _progressDisplayFilter.Get1(entity);
             ref var delayComponent = ref _progressDisplayFilter.Get2(entity);
 
-            if (!delayComponent.IsTimerExpired) {
+            if (delayComponent.IsDisplayable) {
                 progressDisplayComponent.ProgressBarImage.gameObject.SetActive(true);
                 progressDisplayComponent.ProgressBarImage.fillAmount = delayComponent.TimerState/delayComponent.TimerDuration;
             } else {

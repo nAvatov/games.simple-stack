@@ -1758,6 +1758,7 @@ MonoBehaviour:
     TimerDuration: 1
     TimerState: 0
     IsTimerExpired: 0
+    IsDisplayable: 0
 --- !u!114 &2033345470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1907,6 +1908,11 @@ PrefabInstance:
     - target: {fileID: 8840469297400607108, guid: 625636a092065944b885573c5ced7aca,
         type: 3}
       propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8840469297400607108, guid: 625636a092065944b885573c5ced7aca,
+        type: 3}
+      propertyPath: m_FillClockwise
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
