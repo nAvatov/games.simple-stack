@@ -42,11 +42,12 @@ sealed class AgentsStackFillingSystem : IEcsRunSystem{
         }
 
         
- 
-        while(agentStackComponent.ObservableStack.Count < agentComponent.CollectingRestriction && interactorsStackComponent.ObservableStack.Count > 0) {
+        // while loop here if multiple collecting at the same time is required
+        if (agentStackComponent.ObservableStack.Count < agentComponent.CollectingRestriction && interactorsStackComponent.ObservableStack.Count > 0) {
             if (interactorsStackComponent.ObservableStack.TryPop(out GameObject result)) {
                 agentStackComponent.ObservableStack.Push(result);
                 CollectItem(agentComponent, result);
+                
 
                 generatorComponent.NextPlacementPositionIndex--;
             }
@@ -55,7 +56,7 @@ sealed class AgentsStackFillingSystem : IEcsRunSystem{
 
     private void CollectItem(AgentComponent agentComponent, GameObject item) {
         item.transform.SetParent(agentComponent.CollectedItemsPlacement);
-        item.transform.DOMove(agentComponent.AvaiableStackSpot.position, 0.5f);
+        item.transform.DOLocalMove(agentComponent.AvaiableStackSpot.localPosition, 0.5f);
         
         HeightDeltaHandler.HandleSpotPosition(agentComponent.AvaiableStackSpot, agentComponent.SpotHeightDelta, true);
     }

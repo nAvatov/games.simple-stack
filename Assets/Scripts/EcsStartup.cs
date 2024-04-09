@@ -32,7 +32,9 @@ public class EcsStartup : MonoBehaviour {
             .Add(new MovementSystem())
             
             .Add(new DelaySystem())
+            .Add(new DelayProgressDisplaySystem())
             .Add(new StackDisplayingSystem())
+            
             .Add(new StackGenerationSystem())
             
             .Add(new AgentsStackFillingSystem())
