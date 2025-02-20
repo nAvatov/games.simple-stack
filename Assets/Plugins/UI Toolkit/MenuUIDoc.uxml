@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/StyleSheets/score.uss?fileID=7433441132597879392&amp;guid=b602879cb2313db4fb9ed58837d533be&amp;type=3#score" />
+    <ui:VisualElement name="MainContainer" style="flex-grow: 1;">
+        <ui:GroupBox name="MenuGroup" class="menuGroup" style="opacity: 1; width: 45%; height: 100%; justify-content: center; align-self: center; flex-direction: column; flex-wrap: nowrap; align-items: center; flex-shrink: 0; flex-grow: 0; flex-basis: auto;">
+            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menuButton" />
+            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menuButton" />
+            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menuButton" />
+        </ui:GroupBox>
+    </ui:VisualElement>
+</ui:UXML>
