@@ -34,12 +34,12 @@ sealed class RequestedOrderFulfieldSystem : IEcsRunSystem, IEcsInitSystem {
 
                 ref var rewardComponent = ref _stackDrainersFilter.GetEntity(entity).Get<RewardEventComponent>();
 
-                rewardComponent.RewardAmount = 1;
+                rewardComponent.RewardAmount = drainerComponent.RequestedDrainAmount;
                 
                 drainerStackComponent.ObservableStack.Stack.Clear();
                 drainerComponent.RequestedDrainAmount = _drainRandomizer.Next(1, drainerComponent.MaxRequestAmount);
             }
-        }
+        } 
     }
     
     
@@ -47,7 +47,7 @@ sealed class RequestedOrderFulfieldSystem : IEcsRunSystem, IEcsInitSystem {
     private void RemoveClient(StackDrainerComponent drainerComponent) {
         for(int i = drainerComponent.Collector.childCount - 1; i >= 0; i--) {
             GameObject.DestroyImmediate(drainerComponent.Collector.GetChild(i).gameObject);
-            HeightDeltaHandler.HandleSpotPosition(drainerComponent.AvaiableItemSpot, drainerComponent.HeightDelta, false);
+            HeightDeltaHandler.HandleSpotPosition(drainerComponent.AvailableProductItemSpot, drainerComponent.HeightDelta, false);
         }
     }
 }

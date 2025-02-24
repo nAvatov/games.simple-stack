@@ -9,12 +9,11 @@ namespace Components {
         [SerializeField] private string _resourceName;
         [SerializeField] private GameObject _generationSpotsHolder;
         [SerializeField] private GameObject _generationCollector;
-        [SerializeField] private List<Transform> _avaiableItemSpots;
+        [NonSerialized] public List<Transform> AvaiableItemSpots;
         public int NextPlacementPositionIndex;
         public uint GenerationAmount => _generationAmount;
         public string ResourceName => _resourceName;
         public Transform GenerationSpotsHolder => _generationSpotsHolder.transform;
         public Transform GenerationCollector => _generationCollector.transform;
-        public List<Transform> AvaiableItemSpots => _avaiableItemSpots;
     }
 }

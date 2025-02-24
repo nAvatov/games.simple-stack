@@ -1,12 +1,15 @@
 using UnityEngine;
 using System;
+using UnityEngine.Serialization;
 
 namespace Components {
     [Serializable]
     public struct StackDrainerComponent {
         [Header("Item Placement")]
         [SerializeField] private Transform _collector;
-        [SerializeField] private Transform _avaiableSpot;
+        [SerializeField] private Transform _availableProductSpot;
+        [SerializeField] private Transform _availableMoneySpot;
+        // Should be automatic
         [SerializeField] private float _spotHeightDelta;
         [Header("Request")]
         [SerializeField] private TMPro.TextMeshProUGUI _requestedAmountTMP; 
@@ -22,13 +25,23 @@ namespace Components {
                 _requestedAmountTMP.SetText("Order: " + value);
             }
         }
-        public Transform AvaiableItemSpot {
+        public Transform AvailableProductItemSpot {
             get {
-                return _avaiableSpot;
+                return _availableProductSpot;
             }
 
             set {
-                _avaiableSpot = value;
+                _availableProductSpot = value;
+            }
+        }
+        
+        public Transform AvailableMoneyItemSpot {
+            get {
+                return _availableMoneySpot;
+            }
+
+            set {
+                _availableMoneySpot = value;
             }
         }
         public Transform Collector => _collector;

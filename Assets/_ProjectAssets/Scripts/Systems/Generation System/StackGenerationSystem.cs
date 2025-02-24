@@ -1,11 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Leopotam.Ecs;
 using Components;
 
-sealed class StackGenerationSystem : IEcsRunSystem{
+sealed class StackGenerationSystem : IEcsRunSystem, IEcsInitSystem {
     private readonly EcsWorld _world = null;
     private readonly EcsFilter<StackGeneratorComponent, StackComponent, DelayComponent> _stackGeneratorsFilter = null;
 
+    public void Init()
+    {
+        InitializeSpawnPointsListForGenerators();
+    }
+    
     public void Run() {
         foreach(var entity in _stackGeneratorsFilter) {
             ref var stackComponent = ref _stackGeneratorsFilter.Get2(entity);
@@ -30,8 +36,8 @@ sealed class StackGenerationSystem : IEcsRunSystem{
             return; 
         }
 
-        var stackObjectPrefab = Resources.Load<GameObject>(stackGeneratorComponent.ResourceName); // TODO
-        var obj = GameObject.Instantiate(stackObjectPrefab);
+        var resourceRequest = Resources.LoadAsync(stackGeneratorComponent.ResourceName); // TODO
+        var obj = GameObject.Instantiate(resourceRequest.asset as GameObject);
         stackComponent.ObservableStack.Push(obj);
 
         PlaceNewItem(obj, ref stackGeneratorComponent);
@@ -44,5 +50,23 @@ sealed class StackGenerationSystem : IEcsRunSystem{
         
         item.transform.SetParent(stackGeneratorComponent.GenerationCollector, true);
         stackGeneratorComponent.NextPlacementPositionIndex++;
+    }
+
+    private void InitializeSpawnPointsListForGenerators()
+    {
+        foreach (var entity in _stackGeneratorsFilter) 
+        {
+            ref var generatorComponent = ref _stackGeneratorsFilter.Get1(entity);
+
+            if (generatorComponent.GenerationSpotsHolder.childCount > 0)
+            {
+                generatorComponent.AvaiableItemSpots = new List<Transform>();
+                
+                for (int i = 0; i < generatorComponent.GenerationSpotsHolder.childCount; i++)
+                {
+                    generatorComponent.AvaiableItemSpots.Add(generatorComponent.GenerationSpotsHolder.GetChild(i));
+                }
+            }
+        }
     }
 }   

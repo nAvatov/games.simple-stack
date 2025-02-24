@@ -8,9 +8,7 @@ using UnityEngine;
 
 public class RewardSystem : IEcsRunSystem, IEcsInitSystem {
     private readonly EcsWorld _world = null;
-    private readonly EcsFilter<RewardEventComponent> _rewardEventsFilter = null;
-    private readonly EcsFilter<PlayerComponent> _playerFilter = null;
-    private TMPro.TextMeshProUGUI _playerEarnText;
+    private readonly EcsFilter<RewardEventComponent, StackDrainerComponent> _rewardEventsFilter = null;
 
     public void Init()
     {
@@ -27,16 +25,16 @@ public class RewardSystem : IEcsRunSystem, IEcsInitSystem {
         foreach (var rewardEntity in _rewardEventsFilter)
         {
             ref var rewardEventComponent = ref _rewardEventsFilter.Get1(rewardEntity);
+            ref var drainerComponent = ref _rewardEventsFilter.Get2(rewardEntity);
 
-            foreach (var playerEntity in _playerFilter)
-            {
-                ref var playerComponent = ref _playerFilter.Get1(playerEntity);
-                
-                playerComponent.EarnedMoneyAmount += rewardEventComponent.RewardAmount;
-                _playerEarnText.SetText(playerComponent.EarnedMoneyAmount.ToString());
-            }
+            SpawnCashBlock();
             
             _rewardEventsFilter.GetEntity(rewardEntity).Del<RewardEventComponent>();
         }
+    }
+
+    private void SpawnCashBlock()
+    {
+        
     }
 }

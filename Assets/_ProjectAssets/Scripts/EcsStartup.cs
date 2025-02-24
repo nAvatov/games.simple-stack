@@ -1,10 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Leopotam.Ecs;
-using TMPro;
-using Unity.VisualScripting;
-using UnityEngine.Serialization;
 using Voody.UniLeo;
 
 public class EcsStartup : MonoBehaviour {
@@ -18,7 +13,7 @@ public class EcsStartup : MonoBehaviour {
         _systems = new EcsSystems(_world);
         _systems.ConvertScene();
 
-        _systems.Inject(_playerEarnText);
+        //_systems.Inject(_playerEarnText);
             
         AddSystems();
         _systems.Init();
@@ -34,23 +29,46 @@ public class EcsStartup : MonoBehaviour {
     }
 
     private void AddSystems() {
+        AddCoreSystems();
+        AddDisplayingSystems();
+        AddGenerationSystems();
+        AddAgentStackInteractionSystems();
+        AddInteractionResultingSystems();
+    }
+
+    private void AddCoreSystems()
+    {
         _systems
             .Add(new StackSetupSystem())
-            
             .Add(new PlayerInputSystem())
-            .Add(new MovementSystem())
-            
+            .Add(new MovementSystem());
+    }
+
+    private void AddDisplayingSystems()
+    {
+        _systems
             .Add(new DelaySystem())
             .Add(new DelayProgressDisplaySystem())
-            .Add(new StackDisplayingSystem())
-            
-            .Add(new StackGenerationSystem())
-            
+            .Add(new StackDisplayingSystem());
+    }
+
+    private void AddGenerationSystems()
+    {
+        _systems
+            .Add(new StackGenerationSystem());
+    }
+
+    private void AddAgentStackInteractionSystems()
+    {
+        _systems
             .Add(new AgentsStackFillingSystem())
-            .Add(new AgentsStackDrainingSystem())
-            
+            .Add(new AgentsStackDrainingSystem());
+    }
+
+    private void AddInteractionResultingSystems()
+    {
+        _systems
             .Add(new RequestedOrderFulfieldSystem())
-        
             .Add(new RewardSystem());
     }
 }
