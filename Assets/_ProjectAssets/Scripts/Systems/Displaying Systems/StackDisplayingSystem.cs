@@ -29,7 +29,7 @@ sealed class StackDisplayingSystem : IEcsInitSystem, IEcsDestroySystem, IEcsRunS
     private void DisplayStackAmount() {
         foreach(var entity in _stackFilter) {
             ref var stackComponent = ref _stackFilter.Get1(entity);
-            if (stackComponent.ObservableStack != null) {
+            if (stackComponent.ObservableStack != null && stackComponent.StackAmountTMP != null) {
                 stackComponent.StackAmountTMP.SetText((stackComponent.IsTitleNeeded ? "Stacked: " : "") + stackComponent.ObservableStack.Count.ToString());
             }       
         }

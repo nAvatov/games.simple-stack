@@ -32,9 +32,9 @@ sealed class RequestedOrderFulfieldSystem : IEcsRunSystem, IEcsInitSystem {
             if (drainerStackComponent.ObservableStack.Count >= drainerComponent.RequestedDrainAmount) {
                 RemoveClient(drainerComponent);
 
-                ref var rewardComponent = ref _stackDrainersFilter.GetEntity(entity).Get<RewardEventComponent>();
+                //ref var rewardComponent = drainerComponent.RewardDisplayingEntity.TryGetEntity().Value.Get<RewardEventComponent>();
 
-                rewardComponent.RewardAmount = drainerComponent.RequestedDrainAmount;
+                //rewardComponent.RewardAmount = drainerComponent.RequestedDrainAmount;
                 
                 drainerStackComponent.ObservableStack.Stack.Clear();
                 drainerComponent.RequestedDrainAmount = _drainRandomizer.Next(1, drainerComponent.MaxRequestAmount);

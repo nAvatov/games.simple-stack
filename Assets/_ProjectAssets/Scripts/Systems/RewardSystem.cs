@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class RewardSystem : IEcsRunSystem, IEcsInitSystem {
     private readonly EcsWorld _world = null;
-    private readonly EcsFilter<RewardEventComponent, StackDrainerComponent> _rewardEventsFilter = null;
+    private readonly EcsFilter<RewardEventComponent, StackGeneratorComponent> _rewardEventsFilter = null;
 
     public void Init()
     {
@@ -25,16 +25,35 @@ public class RewardSystem : IEcsRunSystem, IEcsInitSystem {
         foreach (var rewardEntity in _rewardEventsFilter)
         {
             ref var rewardEventComponent = ref _rewardEventsFilter.Get1(rewardEntity);
-            ref var drainerComponent = ref _rewardEventsFilter.Get2(rewardEntity);
+            
 
-            SpawnCashBlock();
+            SpawnCashBlock(rewardEntity);
             
             _rewardEventsFilter.GetEntity(rewardEntity).Del<RewardEventComponent>();
         }
     }
 
-    private void SpawnCashBlock()
+    private void SpawnCashBlock(int entityIndex)
     {
-        
+        // Debug.Log("Spawn cash block");
+        // ref var generatorComponent = ref _rewardEventsFilter.Get2(entityIndex);
+        //
+        // if (stackComponent.ObservableStack.Count >= generatorComponent.AvaiableItemSpots.Count) {
+        //     // At this point we're not spawning new objects
+        //     return; 
+        // }
+        //
+        // var resourceRequest = Resources.LoadAsync(stackGeneratorComponent.ResourceName); // TODO
+        // var obj = GameObject.Instantiate(resourceRequest.asset as GameObject);
+        // stackComponent.ObservableStack.Push(obj);
+        //
+        //
+        //
+        // Transform spotTransform = generatorComponent.AvaiableItemSpots[generatorComponent.NextPlacementPositionIndex];
+        // item.transform.SetParent(spotTransform, true);
+        // item.transform.localPosition = new Vector3(0, 0, 0);
+        //
+        // item.transform.SetParent(stackGeneratorComponent.GenerationCollector, true);
+        // stackGeneratorComponent.NextPlacementPositionIndex++;
     }
 }
