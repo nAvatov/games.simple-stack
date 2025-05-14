@@ -3490,8 +3490,9 @@ MonoBehaviour:
   value:
     _agentTransform: {fileID: 2033345446}
     _collectedItemsPlacement: {fileID: 243195576}
-    _avaiableStackSpot: {fileID: 1841395039}
-    _spotHeightDelta: 0.55
+    _availableStackSpot: {fileID: 1841395039}
+    _defaultSpotHeightDelta: 0.55
+    _spotHeightDeltaMultiplier: 1
     _collectingDelay: 1000
     _collectingRestriction: 3
 --- !u!114 &2033345459
@@ -3805,6 +3806,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 3.145
       objectReference: {fileID: 0}
+    - target: {fileID: 1628061186664161572, guid: 2870ea0016b3f5b489a7ba85f522b677,
+        type: 3}
+      propertyPath: value._defaultSpotHeightDelta
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 1628061186664161572, guid: 2870ea0016b3f5b489a7ba85f522b677,
+        type: 3}
+      propertyPath: value._spotHeightDeltaMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1628061186664161572, guid: 2870ea0016b3f5b489a7ba85f522b677,
+        type: 3}
+      propertyPath: value._spotHeightDeltaDeltaMultiplier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1631120376612067699, guid: 2870ea0016b3f5b489a7ba85f522b677,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -4005,6 +4021,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -8.815691
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045016847740961760, guid: 2870ea0016b3f5b489a7ba85f522b677,
+        type: 3}
+      propertyPath: value._defaultSpotHeightDelta
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045016847740961760, guid: 2870ea0016b3f5b489a7ba85f522b677,
+        type: 3}
+      propertyPath: value._spotHeightDeltaMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045016847740961760, guid: 2870ea0016b3f5b489a7ba85f522b677,
+        type: 3}
+      propertyPath: value._spotHeightDeltaDeltaMultiplier
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8136225688018364102, guid: 2870ea0016b3f5b489a7ba85f522b677,
         type: 3}

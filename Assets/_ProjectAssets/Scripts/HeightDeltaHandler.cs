@@ -2,9 +2,15 @@ using System;
 using UnityEngine;
 
 public static class HeightDeltaHandler {
-    public static void HandleSpotPosition(Transform spot, float heightDelta, bool isIncreasing) {
+    public static void IncreaseSpotPosition(Transform spot, float heightDelta) {
         Vector3 newAvaiableSpot = spot.position;
-        newAvaiableSpot[1] += isIncreasing ? heightDelta : -heightDelta;
+        newAvaiableSpot[1] += heightDelta;
+        spot.position = newAvaiableSpot;
+    }
+    
+    public static void DecreaseSpotPosition(Transform spot, float heightDelta) {
+        Vector3 newAvaiableSpot = spot.position;
+        newAvaiableSpot[1] -= heightDelta;
         spot.position = newAvaiableSpot;
     }
 }

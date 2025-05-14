@@ -1,3 +1,4 @@
+using _ProjectAssets.Scripts.Components;
 using Leopotam.Ecs;
 using Components;
 using Components.Events;
@@ -47,7 +48,7 @@ sealed class RequestedOrderFulfieldSystem : IEcsRunSystem, IEcsInitSystem {
     private void RemoveClient(StackDrainerComponent drainerComponent) {
         for(int i = drainerComponent.Collector.childCount - 1; i >= 0; i--) {
             GameObject.DestroyImmediate(drainerComponent.Collector.GetChild(i).gameObject);
-            HeightDeltaHandler.HandleSpotPosition(drainerComponent.AvailableProductItemSpot, drainerComponent.HeightDelta, false);
+            HeightDeltaHandler.DecreaseSpotPosition(drainerComponent.AvailableProductItemSpot, drainerComponent.SpotHeightDelta);
         }
     }
 }

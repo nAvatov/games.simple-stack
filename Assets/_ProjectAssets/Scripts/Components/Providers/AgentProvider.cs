@@ -1,4 +1,7 @@
-using Voody.UniLeo;
 using Components;
+using Voody.UniLeo;
 
-public class AgentProvider: MonoProvider<AgentComponent> {}
+namespace _ProjectAssets.Scripts.Components.Providers
+{
+    public class AgentProvider: MonoProvider<AgentComponent> {}
+}
