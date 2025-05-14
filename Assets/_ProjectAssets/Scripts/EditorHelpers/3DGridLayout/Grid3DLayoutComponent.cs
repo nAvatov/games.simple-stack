@@ -1,26 +1,46 @@
+using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Grid3DLayoutComponent : MonoBehaviour
 {
-    [SerializeField] private int rows = 3; 
-    [SerializeField] private int columns = 3; 
-    [SerializeField] private int layers = 3; 
-    [SerializeField] private float spacing = 1.5f;
-    [SerializeField] private GameObject prefab; 
+    [Header("Grid General Size")]
+    [SerializeField] private int _rowsAmount = 3; 
+    [SerializeField] private int _columnsAmount = 3; 
+    [SerializeField] private int _layersAmount = 3; 
+    
+    [Header("Spacings")]
+    [SerializeField] private float _spacingBetweenLayers = 1.5f;
+    [SerializeField] private float _spacingBetweenRows = 1.5f;
+    [SerializeField] private float _spacingBetweenColumns = 1.5f;
+    [SerializeField] [Range(1f, 2f)] private float _extraLayersSpacing = 1f;
+    [SerializeField] [Range(1f, 2f)] private float _extraRowsSpacing = 1f;
+    [SerializeField] [Range(1f, 2f)] private float _extraColumnsSpacing = 1f;
+
+    [Header("Content")] 
+    [SerializeField] private GameObject _gridElementVisualizer;
+    [SerializeField] private GameObject _targetSpawnObject; 
+    [SerializeField] private BoxCollider _objectsCollider;
+    
 
     public void GenerateGrid()
     {
+        _spacingBetweenLayers = _objectsCollider.size.y * _targetSpawnObject.transform.localScale.z * _extraLayersSpacing;
+        _spacingBetweenColumns = _objectsCollider.size.z * _targetSpawnObject.transform.localScale.x * _extraColumnsSpacing;
+        _spacingBetweenRows = _objectsCollider.size.x * _targetSpawnObject.transform.localScale.y * _extraRowsSpacing;
+        
         ClearGrid();
         
-        for (int x = 0; x < rows; x++)
+        for (int x = 0; x < _rowsAmount; x++)
         {
-            for (int y = 0; y < layers; y++)
+            for (int y = 0; y < _layersAmount; y++)
             {
-                for (int z = 0; z < columns; z++)
+                for (int z = 0; z < _columnsAmount; z++)
                 {
-                    Vector3 position = new Vector3(x * spacing, y * spacing, z * spacing);
-                    GameObject newObj = Instantiate(prefab, transform);
+                    Vector3 position = new Vector3(x * _spacingBetweenRows, y * _spacingBetweenLayers, z * _spacingBetweenColumns);
+                    GameObject newObj = Instantiate(_gridElementVisualizer, transform);
                     newObj.transform.localPosition = position;
                 }
             }
